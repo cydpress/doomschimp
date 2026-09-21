@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Until Mrchimp",
+      "hasCanvas": false,
+      "bodyTextLen": 112,
+      "bodyTextHash": "4c31a79324eb4ba878f05f0658780315b254cab558f0c500896936f46154ea60",
+      "bodyTextPrefix": "UNTIL THE BIRTHDAY OF Mrchimp 0 4 MONTHS 3 0 DAYS 0 2 HOURS 4 2 ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Until Mrchimp",
+      "hasCanvas": false,
+      "bodyTextLen": 101,
+      "bodyTextHash": "964a3b986cbb76e682532130e7a648196dedd8ce434fa39045dee6a88b6293eb",
+      "bodyTextPrefix": "UNTIL THE BIRTHDAY OF Mrchimp –– MONTHS –– DAYS –– HOURS –– MINU",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

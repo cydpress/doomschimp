@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #000000;
+  --color-foreground: #e7e7e4;
+  --color-muted: #7d7d79;
+  --color-subtle: #4c4c49;
+  --color-accent: #c8c8c4;
+  --color-line: #e7e7e424;
+  --color-elevated: #0c0c0c;
+  --color-crimson: #b21f2c;
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --text-kicker: 0.6875rem;
+  --text-kicker--line-height: 1.4;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.4;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5;
+  --text-name: clamp(3.25rem, 1.6rem + 8vw, 7.5rem);
+  --text-name--line-height: 0.9;
+  --text-count: clamp(2rem, 0.7rem + 6.2vw, 5.25rem);
+  --text-count--line-height: 0.9;
+  --text-date: clamp(0.9375rem, 0.8rem + 0.5vw, 1.125rem);
+  --text-date--line-height: 1.4;
+  --text-essay: clamp(1.0625rem, 0.95rem + 0.45vw, 1.25rem);
+  --text-essay--line-height: 1.65;
+
+  --tracking-kicker: 0.34em;
+  --tracking-label: 0.28em;
+  --tracking-name: -0.02em;
+  --tracking-count: -0.04em;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-stagger: 40ms;
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-emphasis: 500ms;
+  --motion-y-micro: 4px;
+  --motion-y-medium: 12px;
+  --motion-blur-sm: 2px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+      env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+.stage {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 42%, var(--color-elevated) 0%, var(--color-background) 72%);
+}
+
+.stage::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--motion-y-medium));
+  filter: blur(4px);
+  animation: reveal-in var(--motion-emphasis) var(--ease-out) forwards;
+}
+
+.reveal-1 {
+  animation-delay: 0ms;
+}
+.reveal-2 {
+  animation-delay: 80ms;
+}
+.reveal-3 {
+  animation-delay: 160ms;
+}
+.reveal-4 {
+  animation-delay: 260ms;
+}
+.reveal-5 {
+  animation-delay: 340ms;
+}
+
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.digit-pop {
+  display: inline-block;
+  animation: digit-in var(--motion-quick) var(--ease-out);
+}
+
+@keyframes digit-in {
+  from {
+    opacity: 0.4;
+    transform: translateY(var(--motion-y-micro));
+    filter: blur(var(--motion-blur-sm));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.6s var(--ease-out) infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+
+.year-fill {
+  transform-origin: left center;
+  transition: transform 800ms var(--ease-out);
+}
+
+.clock-stage {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.38;
+}
+
+.clock-stage-complete {
+  opacity: 0.22;
+}
+
+.clock-face,
+.clock-hands {
+  position: absolute;
+  width: min(94vmin, 48rem);
+  height: min(94vmin, 48rem);
+  max-width: none;
+}
+
+.clock-face {
+  object-fit: contain;
+  user-select: none;
+}
+
+.clock-hands {
+  overflow: visible;
+}
+
+.clock-numeral {
+  fill: var(--color-accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  letter-spacing: 0.06em;
+}
+
+.clock-hand {
+  stroke-linecap: round;
+}
+
+.clock-hand-hour {
+  stroke: var(--color-foreground);
+  stroke-width: 3.1;
+}
+
+.clock-hand-minute {
+  stroke: var(--color-accent);
+  stroke-width: 1.8;
+}
+
+.clock-hand-second {
+  stroke: var(--color-crimson);
+  stroke-width: 0.7;
+}
+
+.clock-cap {
+  fill: var(--color-crimson);
+}
+
+.clock-stage-complete .clock-hand-hour,
+.clock-stage-complete .clock-hand-minute,
+.clock-stage-complete .clock-hand-second {
+  stroke: var(--color-crimson);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .digit-pop,
+  .pulse-dot {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .year-fill {
+    transition: none;
+  }
+}
